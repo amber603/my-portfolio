@@ -43,6 +43,11 @@
         .hljs { background: transparent !important; padding: 1.5rem; font-size: 0.85rem; line-height: 1.7; font-weight: 300; }
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
+        
+        /* 新增：关键词加粗样式，使用深灰色区分于极黑色的标题 */
+        .kw-highlight { font-weight: 600; color: #3F3F46; } 
+        /* 新增：针对深色背景区域的自动反色 */
+        .bg-zinc-950 .kw-highlight { color: #E4E4E7; } 
     </style> <!--[cite: 1]-->
 </head>
 <body class="antialiased selection:bg-brand-dark selection:text-white">
@@ -61,22 +66,22 @@
             
             <!-- Bio Summary -->
             <p class="text-base md:text-lg text-brand-accent font-light leading-relaxed mb-12 text-left md:text-center max-w-2xl mx-auto">
-                Dual background in **Psychology** and **Social Sciences**. Specialized in building end-to-end **user insight pipelines** through qualitative in-depth interviews and **quantitative data modeling** (R / SPSS / Excel). Adept at translating complex data analysis into actionable **product and business strategies**. <!--[cite: 1]-->
+                Dual background in <strong class="kw-highlight">Psychology</strong> and <strong class="kw-highlight">Social Sciences</strong>. Specialized in building end-to-end <strong class="kw-highlight">user insight pipelines</strong> through qualitative in-depth interviews and <strong class="kw-highlight">quantitative data modeling</strong> (R / SPSS / Excel). Adept at translating complex data analysis into actionable <strong class="kw-highlight">product and business strategies</strong>. <!--[cite: 1]-->
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-5 mb-14">
                 <a href="#portfolio" class="px-8 py-3.5 bg-brand-dark text-white text-sm font-medium tracking-wide rounded-none hover:bg-zinc-800 transition-all">
                     View RStudio Portfolio <!--[cite: 1]-->
                 </a>
-                <a href=".Chun Wang-Resume.pdf" target="_blank" class="px-8 py-3.5 bg-white text-brand-dark text-sm border border-brand-border font-medium tracking-wide rounded-none hover:bg-brand-muted transition-all">
+                <a href="./resume.pdf" target="_blank" class="px-8 py-3.5 bg-white text-brand-dark text-sm border border-brand-border font-medium tracking-wide rounded-none hover:bg-brand-muted transition-all">
                     View Full Resume <!--[cite: 1]-->
                 </a>
             </div>
 
             <!-- Contact Info -->
             <div class="flex flex-wrap justify-center gap-8 text-xs text-brand-accent font-medium tracking-wider uppercase">
-                <span>Toronto, Canada</span> <!--[cite: 1]-->
-                <span>+1 437 362 4998</span> <!--[cite: 1]-->
+                <span>Hangzhou, China</span> <!--[cite: 1]-->
+                <span>+86 138 2867 7328</span> <!--[cite: 1]-->
                 <span>amberw603@163.com</span> <!--[cite: 1]-->
             </div>
         </div>
@@ -89,7 +94,7 @@
         <div class="p-6 md:p-8 border border-brand-border bg-brand-muted/50 mb-20" data-aos="fade-up"> <!--[cite: 1]-->
             <h3 class="text-xs font-semibold text-brand-accent mb-3 tracking-widest uppercase">Data Disclaimer</h3> <!--[cite: 1]-->
             <p class="text-brand-accent font-light leading-relaxed text-sm">
-                This project is based on real-world scenarios. All data is **simulated** to demonstrate a complete **quantitative analysis workflow**—from data cleaning and statistical modeling to generating visual insights. <!--[cite: 1]-->
+                This project is based on real-world scenarios. All data is <strong class="kw-highlight">simulated</strong> to demonstrate a complete <strong class="kw-highlight">quantitative analysis workflow</strong>—from data cleaning and statistical modeling to generating visual insights. <!--[cite: 1]-->
             </p>
         </div>
 
@@ -104,23 +109,23 @@
            <div class="grid md:grid-cols-2 gap-12">
                 <div>
                     <h4 class="text-xs font-semibold text-brand-accent mb-4 tracking-widest uppercase">Project Background</h4> <!--[cite: 1]-->
-                    <p class="text-brand-accent font-light leading-relaxed text-sm mb-4">This case simulates a two-week youth camp. **39 participants** (ages 14-18, diverse demographics) rated their **engagement (1-5 scale)** across 6 core activities at the end of Week 1 and Week 2. <!--[cite: 1]--></p>
-                    <p class="text-brand-accent font-light leading-relaxed text-sm">After Week 1, the team made **micro-adjustments** to activities based on initial feedback. This analysis focuses on the **quantitative comparison** between the two weeks to evaluate **overall engagement trends**, independent of specific causal factors. <!--[cite: 1]--></p>
+                    <p class="text-brand-accent font-light leading-relaxed text-sm mb-4">This case simulates a two-week youth camp. <strong class="kw-highlight">39 participants</strong> (ages 14-18, diverse demographics) rated their <strong class="kw-highlight">engagement (1-5 scale)</strong> across 6 core activities at the end of Week 1 and Week 2. <!--[cite: 1]--></p>
+                    <p class="text-brand-accent font-light leading-relaxed text-sm">After Week 1, the team made <strong class="kw-highlight">micro-adjustments</strong> to activities based on initial feedback. This analysis focuses on the <strong class="kw-highlight">quantitative comparison</strong> between the two weeks to evaluate <strong class="kw-highlight">overall engagement trends</strong>, independent of specific causal factors. <!--[cite: 1]--></p>
                 </div>
                 <div>
                     <h4 class="text-xs font-semibold text-brand-accent mb-4 tracking-widest uppercase">Analysis Objectives</h4> <!--[cite: 1]-->
                     <ul class="text-brand-accent font-light leading-relaxed text-sm space-y-4">
                         <li class="grid grid-cols-[auto_1fr] gap-x-3">
                             <span class="text-brand-border">—</span>
-                            <span><strong class="text-brand-dark font-medium">Overall Trend:</strong> Did engagement **significantly improve** in Week 2, and by what magnitude? <!--[cite: 1]--></span>
+                            <span><strong class="text-brand-dark font-medium">Overall Trend:</strong> Did engagement <strong class="kw-highlight">significantly improve</strong> in Week 2, and by what magnitude? <!--[cite: 1]--></span>
                         </li>
                         <li class="grid grid-cols-[auto_1fr] gap-x-3">
                             <span class="text-brand-border">—</span>
-                            <span><strong class="text-brand-dark font-medium">Individual Consistency:</strong> Was the improvement driven by a few outliers, or a **widespread trend** across most participants? <!--[cite: 1]--></span>
+                            <span><strong class="text-brand-dark font-medium">Individual Consistency:</strong> Was the improvement driven by a few outliers, or a <strong class="kw-highlight">widespread trend</strong> across most participants? <!--[cite: 1]--></span>
                         </li>
                         <li class="grid grid-cols-[auto_1fr] gap-x-3">
                             <span class="text-brand-border">—</span>
-                            <span><strong class="text-brand-dark font-medium">Statistical Reliability:</strong> Does the data meet the assumptions for a paired-samples t-test, ensuring **robust conclusions**? <!--[cite: 1]--></span>
+                            <span><strong class="text-brand-dark font-medium">Statistical Reliability:</strong> Does the data meet the assumptions for a paired-samples t-test, ensuring <strong class="kw-highlight">robust conclusions</strong>? <!--[cite: 1]--></span>
                         </li>
                     </ul>
                 </div>
@@ -131,7 +136,7 @@
         <section class="mb-24" data-aos="fade-up"> <!--[cite: 1]-->
             <div class="mb-10">
                 <h3 class="text-lg font-medium text-brand-dark mb-3">Statistical Validation & Assumption Testing</h3> <!--[cite: 1]-->
-                <p class="text-brand-accent font-light text-sm max-w-3xl">Before proceeding with visual analysis, **normality and significance tests** were conducted to ensure all business conclusions are backed by **solid statistical evidence**. <!--[cite: 1]--></p>
+                <p class="text-brand-accent font-light text-sm max-w-3xl">Before proceeding with visual analysis, <strong class="kw-highlight">normality and significance tests</strong> were conducted to ensure all business conclusions are backed by <strong class="kw-highlight">solid statistical evidence</strong>. <!--[cite: 1]--></p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
@@ -142,8 +147,8 @@
                     </h4>
                     <p class="text-sm font-light text-brand-accent mb-6">A distribution test was conducted on individual difference scores to verify parametric testing assumptions. <!--[cite: 1]--></p>
                     <div class="border-l-2 border-brand-dark pl-4 text-sm">
-                        <span class="block text-brand-accent font-light mb-1">Result: **p = 0.168 (> 0.05)** <!--[cite: 1]--></span>
-                        <span class="text-brand-dark font-medium">The difference data follows a **normal distribution**, confirming a paired t-test is appropriate. <!--[cite: 1]--></span>
+                        <span class="block text-brand-accent font-light mb-1">Result: <strong class="kw-highlight">p = 0.168 (&gt; 0.05)</strong> <!--[cite: 1]--></span>
+                        <span class="text-brand-dark font-medium">The difference data follows a <strong class="kw-highlight">normal distribution</strong>, confirming a paired t-test is appropriate. <!--[cite: 1]--></span>
                     </div>
                 </div>
                 
@@ -154,8 +159,8 @@
                     </h4>
                     <p class="text-sm font-light text-brand-accent mb-6">Analyzed the overall mean difference between Week 1 and Week 2 to rule out random error. <!--[cite: 1]--></p>
                     <div class="border-l-2 border-brand-dark pl-4 text-sm">
-                        <span class="block text-brand-accent font-light mb-1">Result: **t(38) = 25.49, p < 0.001** <!--[cite: 1]--></span>
-                        <span class="text-brand-dark font-medium">The increase in engagement scores is **highly significant**. <!--[cite: 1]--></span>
+                        <span class="block text-brand-accent font-light mb-1">Result: <strong class="kw-highlight">t(38) = 25.49, p &lt; 0.001</strong> <!--[cite: 1]--></span>
+                        <span class="text-brand-dark font-medium">The increase in engagement scores is <strong class="kw-highlight">highly significant</strong>. <!--[cite: 1]--></span>
                     </div>
                 </div>
             </div>
@@ -175,10 +180,10 @@
                 <div class="order-1 md:order-2 md:col-span-5">
                     <h3 class="text-xl font-medium mb-5">Overall Engagement Comparison</h3> <!--[cite: 1]-->
                     <p class="text-brand-accent font-light leading-relaxed text-sm mb-5">
-                        <strong class="text-brand-dark font-medium">Key Finding:</strong> Average engagement in Week 2 (M = 3.66, SD = 0.41) was **significantly higher** than Week 1 (M = 3.34, SD = 0.40), marking an average increase of **0.32 points (+9.6%)**. <!--[cite: 1]-->
+                        <strong class="text-brand-dark font-medium">Key Finding:</strong> Average engagement in Week 2 (M = 3.66, SD = 0.41) was <strong class="kw-highlight">significantly higher</strong> than Week 1 (M = 3.34, SD = 0.40), marking an average increase of <strong class="kw-highlight">0.32 points (+9.6%)</strong>. <!--[cite: 1]-->
                     </p>
                     <p class="text-brand-accent font-light leading-relaxed text-sm">
-                        <strong class="text-brand-dark font-medium">Interpretation:</strong> Short error bars indicate **low score fluctuation**, demonstrating a **stable upward trend** across the group. This establishes a clear quantitative baseline for further analysis. <!--[cite: 1]-->
+                        <strong class="text-brand-dark font-medium">Interpretation:</strong> Short error bars indicate <strong class="kw-highlight">low score fluctuation</strong>, demonstrating a <strong class="kw-highlight">stable upward trend</strong> across the group. This establishes a clear quantitative baseline for further analysis. <!--[cite: 1]-->
                     </p>
                 </div>
             </div>
@@ -188,10 +193,10 @@
                 <div class="md:col-span-5">
                     <h3 class="text-xl font-medium mb-5">Individual Engagement Trajectories</h3> <!--[cite: 1]-->
                     <p class="text-brand-accent font-light leading-relaxed text-sm mb-5">
-                        <strong class="text-brand-dark font-medium">Key Finding:</strong> Individual trajectories display a **clear upward trend** for nearly all 39 participants, alongside a very low standard deviation for difference scores (**SD = 0.08**). <!--[cite: 1]-->
+                        <strong class="text-brand-dark font-medium">Key Finding:</strong> Individual trajectories display a <strong class="kw-highlight">clear upward trend</strong> for nearly all 39 participants, alongside a very low standard deviation for difference scores (<strong class="kw-highlight">SD = 0.08</strong>). <!--[cite: 1]-->
                     </p>
                     <p class="text-brand-accent font-light leading-relaxed text-sm">
-                        <strong class="text-brand-dark font-medium">Interpretation:</strong> The minimal variance indicates that the magnitude of improvement is **highly concentrated around the mean**. This cross-validates the group-level improvements. <!--[cite: 1]-->
+                        <strong class="text-brand-dark font-medium">Interpretation:</strong> The minimal variance indicates that the magnitude of improvement is <strong class="kw-highlight">highly concentrated around the mean</strong>. This cross-validates the group-level improvements. <!--[cite: 1]-->
                     </p>
                 </div>
                 <div class="md:col-span-7">
@@ -213,10 +218,10 @@
                 <div class="order-1 md:order-2 md:col-span-5">
                     <h3 class="text-xl font-medium mb-5">Difference Distribution & Validation</h3> <!--[cite: 1]-->
                     <p class="text-brand-accent font-light leading-relaxed text-sm mb-5">
-                        <strong class="text-brand-dark font-medium">Key Finding:</strong> The mean difference across participants is **0.319 points**. The difference histogram reveals a distribution **highly concentrated to the right** of the zero baseline. <!--[cite: 1]-->
+                        <strong class="text-brand-dark font-medium">Key Finding:</strong> The mean difference across participants is <strong class="kw-highlight">0.319 points</strong>. The difference histogram reveals a distribution <strong class="kw-highlight">highly concentrated to the right</strong> of the zero baseline. <!--[cite: 1]-->
                     </p>
                     <p class="text-brand-accent font-light leading-relaxed text-sm">
-                        <strong class="text-brand-dark font-medium">Interpretation:</strong> This confirms the data meets the **normal distribution assumption**, validating the paired t-test results and proving the overall increase is statistically sound. <!--[cite: 1]-->
+                        <strong class="text-brand-dark font-medium">Interpretation:</strong> This confirms the data meets the <strong class="kw-highlight">normal distribution assumption</strong>, validating the paired t-test results and proving the overall increase is statistically sound. <!--[cite: 1]-->
                     </p>
                 </div>
             </div>
@@ -225,7 +230,7 @@
             <div id="fig4" class="scroll-mt-20 pt-10" data-aos="fade-up"> <!--[cite: 1]-->
                 <h3 class="text-xl font-medium mb-4 text-center">Analytical Narrative Dashboard</h3> <!--[cite: 1]-->
                 <p class="text-brand-accent font-light leading-relaxed text-center max-w-3xl mx-auto mb-10 text-sm">
-                    This dashboard integrates **overall trends, individual trajectories, and statistical diagnostics** into a unified view. These components mutually corroborate each other, thoroughly addressing the core research objectives. <!--[cite: 1]-->
+                    This dashboard integrates <strong class="kw-highlight">overall trends, individual trajectories, and statistical diagnostics</strong> into a unified view. These components mutually corroborate each other, thoroughly addressing the core research objectives. <!--[cite: 1]-->
                 </p>
                 <div class="border border-brand-border p-1">
                     <img src="p_final.png" alt="Analytical Narrative Dashboard" class="w-full h-auto opacity-95 hover:opacity-100 transition-opacity"> <!--[cite: 1]-->
@@ -243,24 +248,24 @@
                 </h2>
                 
                 <p class="text-zinc-400 font-light leading-relaxed mb-10 text-sm max-w-3xl">
-                    This comparative analysis confirms a **significant group-level improvement** and **high individual-level consistency**. Based on these findings, we recommend the following next steps: <!--[cite: 1]-->
+                    This comparative analysis confirms a <strong class="kw-highlight">significant group-level improvement</strong> and <strong class="kw-highlight">high individual-level consistency</strong>. Based on these findings, we recommend the following next steps: <!--[cite: 1]-->
                 </p>
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="border-t border-zinc-800 pt-6">
                         <span class="block text-xs font-mono text-zinc-500 mb-3">01</span>
                         <h4 class="font-medium text-sm mb-3">Qualitative Attribution</h4> <!--[cite: 1]-->
-                        <p class="text-zinc-400 font-light text-sm leading-relaxed">Conduct **semi-structured interviews** with the top and bottom 20% of participants (based on improvement) to uncover specific causal factors. <!--[cite: 1]--></p>
+                        <p class="text-zinc-400 font-light text-sm leading-relaxed">Conduct <strong class="kw-highlight">semi-structured interviews</strong> with the top and bottom 20% of participants (based on improvement) to uncover specific causal factors. <!--[cite: 1]--></p>
                     </div>
                     <div class="border-t border-zinc-800 pt-6">
                         <span class="block text-xs font-mono text-zinc-500 mb-3">02</span>
                         <h4 class="font-medium text-sm mb-3">Quantitative Breakdown</h4> <!--[cite: 1]-->
-                        <p class="text-zinc-400 font-light text-sm leading-relaxed">Gather detailed ratings per activity to identify high- and low-contribution events, forming a comprehensive **impact matrix**. <!--[cite: 1]--></p>
+                        <p class="text-zinc-400 font-light text-sm leading-relaxed">Gather detailed ratings per activity to identify high- and low-contribution events, forming a comprehensive <strong class="kw-highlight">impact matrix</strong>. <!--[cite: 1]--></p>
                     </div>
                     <div class="border-t border-zinc-800 pt-6">
                         <span class="block text-xs font-mono text-zinc-500 mb-3">03</span>
                         <h4 class="font-medium text-sm mb-3">Early Warning Mechanism</h4> <!--[cite: 1]-->
-                        <p class="text-zinc-400 font-light text-sm leading-relaxed">Develop an **At-Risk Warning List** using pulse surveys after Week 1 to proactively identify disengaged users and implement **timely interventions**. <!--[cite: 1]--></p>
+                        <p class="text-zinc-400 font-light text-sm leading-relaxed">Develop an <strong class="kw-highlight">At-Risk Warning List</strong> using pulse surveys after Week 1 to proactively identify disengaged users and implement <strong class="kw-highlight">timely interventions</strong>. <!--[cite: 1]--></p>
                     </div>
                 </div>
             </div>
@@ -344,11 +349,11 @@ t_result <- t.test(week_wide$`Week 2`, week_wide$`Week 1`, paired = TRUE)</code>
                     amberw603@163.com <!--[cite: 1]-->
                 </a>
                 <span class="hidden sm:inline-block text-brand-border">|</span>
-                <a href="tel:4373624998" class="text-sm text-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wide">
+                <a href="tel:13828677328" class="text-sm text-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wide">
                     +86 138 2867 7328 <!--[cite: 1]-->
                 </a>
                 <span class="hidden sm:inline-block text-brand-border">|</span>
-                <a href="Chun Wang-Resume.pdf" target="_blank" class="text-sm text-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wide underline underline-offset-4">
+                <a href="resume.pdf" target="_blank" class="text-sm text-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wide underline underline-offset-4">
                     Download Resume <!--[cite: 1]-->
                 </a>
             </div>
