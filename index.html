@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -44,7 +45,6 @@
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
         
-        /* 关键词加粗样式，使用深灰色区分于极黑色的标题 */
         .kw-highlight { font-weight: 600; color: #3F3F46; } 
     </style>
 </head>
@@ -231,7 +231,7 @@
                     This dashboard integrates <strong class="kw-highlight">overall trends, individual trajectories, and statistical diagnostics</strong> into a unified view. These components mutually corroborate each other, thoroughly addressing the core research objectives.
                 </p>
                 <div class="border border-brand-border p-1">
-                    <img src="p_final.png" alt="Analytical Narrative Dashboard" class="w-full h-auto opacity-95 hover:opacity-100 transition-opacity">
+                    <img src="dashboard_combined.png" alt="Analytical Narrative Dashboard" class="w-full h-auto opacity-95 hover:opacity-100 transition-opacity">
                 </div>
             </div>
 
@@ -290,39 +290,48 @@
                 
                 <div class="p-8 space-y-12 border-t border-brand-border bg-zinc-950 text-zinc-300">
                     
-                    <!-- Environment Setup -->
+                    <!-- Environment & Data Preprocessing -->
                     <div>
                         <h3 class="text-xs font-mono text-zinc-500 mb-4 uppercase tracking-widest">
-                            // Environment Setup & Data Import
+                            // Environment Setup & Data Preprocessing
                         </h3>
                         <pre><code class="language-r">library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(readxl)
-
-my_colors <- c("#475569","#0F172A") # Updated to monochrome
+library(patchwork)
 
 df <- read_excel("participant_full_data.xlsx")
-df$Week <- factor(df$Week, level = c("Week 1", "Week 2"))</code></pre>
-                    </div>
+df$Week <- factor(df$Week, levels = c("Week 1", "Week 2"))
+my_colors <- c("#52525B", "#09090B")
 
-                    <!-- 00 Statistical Testing -->
-                    <div>
-                        <h3 class="text-xs font-mono text-zinc-500 mb-4 uppercase tracking-widest">
-                            // 00 Statistical Testing
-                        </h3>
-                        <pre><code class="language-r"># Convert to wide format to calculate differences
+# Pivot to wide format for difference analysis
 week_wide <- df %>%
   group_by(Participant_ID, Week) %>%
   summarise(Per_Average = mean(Engagement_Score), .groups = "drop") %>%
   pivot_wider(names_from = Week, values_from = Per_Average) %>%
-  mutate(Difference = `Week 2` - `Week 1`)
+  mutate(Difference = `Week 2` - `Week 1`)</code></pre>
+                    </div>
 
-# 1. Normality test of difference scores
+                    <!-- Statistical Testing -->
+                    <div>
+                        <h3 class="text-xs font-mono text-zinc-500 mb-4 uppercase tracking-widest">
+                            // Statistical Testing & Descriptive Metrics
+                        </h3>
+                        <pre><code class="language-r"># 1. Normality Test
 shapiro_result <- shapiro.test(week_wide$Difference)
 
-# 2. Paired-samples t-test
-t_result <- t.test(week_wide$`Week 2`, week_wide$`Week 1`, paired = TRUE)</code></pre>
+# 2. Paired Samples T-Test
+t_result <- t.test(week_wide$`Week 2`, week_wide$`Week 1`, paired = TRUE)
+
+# 3. Descriptive Statistics Summary
+des_stat <- week_wide %>%
+  summarise(Week1_Mean = mean(`Week 1`),
+            Week1_SD   = sd(`Week 1`),
+            Week2_Mean = mean(`Week 2`),
+            Week2_SD   = sd(`Week 2`),
+            Diff_Mean  = mean(Difference),
+            Diff_SD    = sd(Difference))</code></pre>
                     </div>
 
                     <!-- 01 Overall Engagement -->
@@ -333,8 +342,7 @@ t_result <- t.test(week_wide$`Week 2`, week_wide$`Week 1`, paired = TRUE)</code>
                             </h3>
                             <a href="#fig1" class="text-xs font-mono text-brand-accent hover:text-white transition-colors">👉 View Fig 01</a>
                         </div>
-                        <pre><code class="language-r"># Data cleaning: calculate individual averages and weekly summaries
-individual_data <- df %>%
+                        <pre><code class="language-r">individual_data <- df %>%
   group_by(Participant_ID, Week) %>%
   summarise(Per_Average = mean(Engagement_Score), .groups = "drop")
 
@@ -348,23 +356,23 @@ week_sum <- individual_data %>%
   ) %>%
   mutate(SE = SD / sqrt(n))
 
-# Plotting
 p_col <- ggplot(week_sum, aes(x = Week, y = Average, fill = Week)) +
   geom_col(width = 0.5, alpha = 0.8) +
-  geom_errorbar(aes(ymin = Average - SE, ymax = Average + SE), width = 0.5, linewidth = 0.8) +
+  geom_errorbar(aes(ymin = Average - SE, ymax = Average + SE),
+                width = 0.2, linewidth = 0.8, color = "#DC2626") +
   labs(title = "Overall Engagement: Week 1 vs Week 2",
        x = "Time",
        y = "Average Engagement (1-5)",
-       subtitle = "Error bars represent standard error (SE) of the mean",
-       caption = paste0("Average Increase: ",
-                       round(week_sum$Average[2]-week_sum$Average[1],2),
-                       " points (",round((week_sum$Average[2]-week_sum$Average[1])/
-                                   week_sum$Average[1]*100,1),"%)")) +
+       subtitle = "Error bars represent Standard Error (SE)",
+       caption = paste0("Avg. Increase:",
+                        round(week_sum$Average[2] - week_sum$Average[1], 2),
+                        "pts (", round((week_sum$Average[2] - week_sum$Average[1]) /
+                                       week_sum$Average[1] * 100, 1), "%)")) +
   scale_fill_manual(values = my_colors) +
   theme_minimal() +
-  theme(plot.title = element_text(size=14,hjust=0.5),
-        plot.subtitle = element_text(size=12,hjust = 0.5),
-        plot.caption=element_text(size=12,hjust = 1)) +
+  theme(plot.title = element_text(size = 15, hjust = 0.5, face = "bold"),
+        plot.subtitle = element_text(size = 12, hjust = 0.5),
+        plot.caption = element_text(size = 12, hjust = 1, face = "italic")) +
   ylim(0, 5)</code></pre>
                     </div>
 
@@ -376,23 +384,19 @@ p_col <- ggplot(week_sum, aes(x = Week, y = Average, fill = Week)) +
                             </h3>
                             <a href="#fig2" class="text-xs font-mono text-brand-accent hover:text-white transition-colors">👉 View Fig 02</a>
                         </div>
-                        <pre><code class="language-r"># Plotting (based on individual_data)
-p_individual <- ggplot(individual_data, aes(x = Week, y = Per_Average,
-                                      group = Participant_ID)) +
-  geom_line(alpha = 0.6, linewidth = 0.8, color = "grey") +
-  geom_point(alpha = 0.8, size = 1.5, color = "blue") +
-  stat_summary(aes(group = 1), fun = mean, geom = "line",
-               color = my_colors[2], linewidth = 1.5) +
-  stat_summary(aes(group = 1), fun = mean, geom = "point",
-               color = my_colors[2], size = 3) +
+                        <pre><code class="language-r">p_individual <- ggplot(individual_data, aes(x = Week, y = Per_Average, group = Participant_ID)) +
+  geom_line(alpha = 0.5, linewidth = 0.6, color = "#A1A1AA") +
+  geom_point(alpha = 0.6, size = 1.5, color = my_colors[1]) +
+  stat_summary(aes(group = 1), fun = mean, geom = "line", color = "#DC2626", linewidth = 1.5) +
+  stat_summary(aes(group = 1), fun = mean, geom = "point", color = "#DC2626", size = 3) +
   labs(title = "Individual Engagement Trajectories",
-       subtitle = paste0("Red line is overall mean: ",
-                        round(week_sum$Average[1],2),"→",
-                        round(week_sum$Average[2],2)),
+       subtitle = paste0("Highlighted line: Overall Mean (",
+                         round(week_sum$Average[1], 2), "→",
+                         round(week_sum$Average[2], 2), ")"),
        x = "Time", y = "Average Engagement (1-5)") +
   theme_minimal() +
-  theme(plot.title = element_text(size=14,hjust=0.5),
-        plot.subtitle = element_text(size=12,hjust = 0.5)) +
+  theme(plot.title = element_text(size = 15, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(size = 12, hjust = 0.5)) +
   ylim(1, 5)</code></pre>
                     </div>
 
@@ -400,35 +404,42 @@ p_individual <- ggplot(individual_data, aes(x = Week, y = Per_Average,
                     <div>
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest m-0">
-                                // 03 Difference Distribution & Significance
+                                // 03 Difference Distribution & Density
                             </h3>
                             <a href="#fig3" class="text-xs font-mono text-brand-accent hover:text-white transition-colors">👉 View Fig 03</a>
                         </div>
-                        <pre><code class="language-r"># Plotting (based on week_wide)
-p_histogram <- ggplot(week_wide, aes(x = Difference)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 10, fill = my_colors[2], alpha = 0.6,
-                 color = "white") +
+                        <pre><code class="language-r">p_histogram <- ggplot(week_wide, aes(x = Difference)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 10, fill = my_colors[2], alpha = 0.6, color = "white") +
   geom_density(color = my_colors[1], linewidth = 1) +
   stat_function(fun = dnorm,
-                args = list(
-                  mean = mean(week_wide$Difference),
-                  sd = sd(week_wide$Difference)
-                ), color = "darkred", linetype = "dashed", linewidth = 1) +
-  geom_vline(xintercept = 0, linetype = "dotted", color = "darkred", linewidth = 0.8) +
-  geom_vline(xintercept = mean(week_wide$Difference), 
-             color = "red", linewidth = 0.8) +
-  annotate("text", x = mean(week_wide$Difference) + 0.01, 
+                args = list(mean = mean(week_wide$Difference), sd = sd(week_wide$Difference)),
+                color = "#7F1D1D", linetype = "dashed", linewidth = 1) +
+  geom_vline(xintercept = 0, linetype = "dotted", color = "#7F1D1D", linewidth = 0.8) +
+  geom_vline(xintercept = mean(week_wide$Difference), color = "#DC2626", linewidth = 0.8) +
+  annotate("text", x = mean(week_wide$Difference) + 0.01,
            y = max(density(week_wide$Difference)$y) * 0.7,
-           label = paste0("Mean= ", round(mean(week_wide$Difference), 3)), 
-           color = "red", hjust = 0, size = 3.8) +
-  labs(title = "Difference Distribution: Week 2 - Week 1",
-       subtitle = "Histogram & Density Curve (Dashed line is theoretical normal)",
-       x = "Difference", y = "Density",
+           label = paste0("Mean = ", round(mean(week_wide$Difference), 3)),
+           color = "#DC2626", hjust = 0, size = 3.8) +
+  labs(title = "Difference Distribution (Week 2 - Week 1)",
+       subtitle = "Histogram & Density (Dashed = Theoretical Normal)",
+       x = "Difference Score", y = "Density",
        caption = paste0("Shapiro-Wilk: p = ", round(shapiro_result$p.value, 4))) +
   theme_minimal() +
-  theme(plot.title = element_text(size = 14, hjust = 0.5),
+  theme(plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
         plot.subtitle = element_text(size = 12, hjust = 0.5),
         plot.caption = element_text(size = 12, hjust = 0.95))</code></pre>
+                    </div>
+
+                    <!-- 04 Patchwork Dashboard -->
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest m-0">
+                                // 04 Dashboard Assembly (Patchwork)
+                            </h3>
+                            <a href="#fig4" class="text-xs font-mono text-brand-accent hover:text-white transition-colors">👉 View Fig 04</a>
+                        </div>
+                        <pre><code class="language-r">final_plot <- p_col / (p_individual | p_histogram) +
+  plot_layout(heights = c(1, 1.2))</code></pre>
                     </div>
                 </div>
             </details>
@@ -448,7 +459,7 @@ p_histogram <- ggplot(week_wide, aes(x = Difference)) +
                     amberw603@163.com
                 </a>
                 <span class="hidden sm:inline-block text-brand-border">|</span>
-                <a href="tel:+86 13828677328" class="text-sm text-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wide">
+                <a href="tel:+14373624998" class="text-sm text-brand-accent hover:text-brand-dark transition-colors font-medium tracking-wide">
                     +1 437 362 4998
                 </a>
                 <span class="hidden sm:inline-block text-brand-border">|</span>
